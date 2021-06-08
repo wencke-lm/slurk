@@ -15,7 +15,7 @@ then
         -d "{\"room\": \"$ROOM\", \"message_text\": true}" \
         localhost/api/v2/token | sed 's/^"\(.*\)"$/\1/'
 
-elif [ "$#" -eq 3 ] && [ $3 == '--concierge' ]
+elif [ "$#" -eq 3 ] && [ $3 = '--concierge' ]
 then
   curl -X POST \
         -H "Authorization: Token $ADMIN" \
@@ -24,7 +24,7 @@ then
         -d "{\"room\": \"$ROOM\", \"message_text\": true, \"room_create\": true, \"user_room_join\": true, \"user_room_leave\": true}" \
         localhost/api/v2/token | sed 's/^"\(.*\)"$/\1/'
 
-elif [ "$#" -eq 3 ] && [ $3 == '--echo' ]
+elif [ "$#" -eq 3 ] && [ $3 = '--echo' ]
 then
   curl -X POST \
         -H "Authorization: Token $ADMIN" \
