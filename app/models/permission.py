@@ -7,6 +7,7 @@ class Permissions(Base):
     __tablename__ = 'Permissions'
 
     user_query = db.Column(db.Boolean, nullable=False, default=False)
+    user_put = db.Column(db.Boolean, nullable=False, default=False)
     user_log_event = db.Column(db.Boolean, nullable=False, default=False)
     user_room_join = db.Column(db.Boolean, nullable=False, default=False)
     user_room_leave = db.Column(db.Boolean, nullable=False, default=False)
@@ -35,6 +36,7 @@ class Permissions(Base):
         return dict({
             'user': {
                 'query': self.user_query,
+                'put':self.user_put,
                 'log': {
                     'event': self.user_log_event,
                 },
