@@ -168,6 +168,7 @@ def post_token():
             source=data.get("source", None),
             permissions=Permissions(
                 user_query=data.get("user_query", False),
+                user_put=data.get("user_put", False),
                 user_log_event=data.get("user_log_event", False),
                 user_room_join=data.get("user_room_join", False),
                 user_room_leave=data.get("user_room_leave", False),
@@ -232,6 +233,29 @@ def get_user(id):
         return make_response(jsonify({'error': 'user not found'}), 404)
 
 
+@api.route('/user/<int:id>', methods=['PUT'])
+@auth.login_required
+def put_user(id):
+    if not g.current_permissions.user_put:
+        return make_response(jsonify({'error': 'insufficient rights'}), 403)
+
+    data = request.get_json(force=True) if request.is_json else None
+    if not data:
+        return make_response(jsonify({'error': 'bad request'}), 400)
+
+    user = User.query.get(id)
+    if not user:
+        return make_response(jsonify({'error': 'user not found'}), 404)
+
+    if 'name' in data and isinstance(data['name'], str):
+        user.name = data['name']
+    else:
+        return make_response(jsonify({'error': 'No valid modifiable user attribute found.'}), 400)
+    try:
+        db.session.commit()
+        return jsonify(user.as_dict())
+    except (IntegrityError, StatementError) as e:
+        return make_response(jsonify({'error': str(e)}), 400)
 @api.route('/tasks', methods=['GET'])
 @auth.login_required
 def get_tasks():
