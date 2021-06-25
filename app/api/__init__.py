@@ -257,7 +257,6 @@ def put_user(id):
     except (IntegrityError, StatementError) as e:
         return make_response(jsonify({'error': str(e)}), 400)
 
-
 @api.route('/tasks', methods=['GET'])
 @auth.login_required
 def get_tasks():
