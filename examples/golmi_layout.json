@@ -1,0 +1,75 @@
+{
+  "title": "Pentomino in GOLM",
+  "subtitle": "Demo of a Pentomino interface build using the GOLM framework",
+  "html": [
+    {
+      "layout-type": "div",
+      "style": "padding:10px;",
+      "layout-content": [
+        {
+          "layout-type": "button",
+          "id": "start",
+          "autocomplete": "off",
+          "layout-content": "Start"
+        },
+        {
+          "layout-type": "button",
+          "id": "stop",
+          "autocomplete": "off",
+          "layout-content": "Stop"
+        }
+      ]
+    },
+    {
+      "layout-type": "div",
+      "id": "viewport",
+      "style": "height: 600px; width: 600px; padding: 10px;",
+      "layout-content": [
+        {
+          "layout-type": "canvas",
+          "id": "background",
+          "width": "600",
+          "height": "600"
+        },
+        {
+          "layout-type": "canvas",
+          "id": "objects",
+          "width": "600",
+          "height": "600"
+        },
+        {
+          "layout-type": "canvas",
+          "id": "gripper",
+          "width": "600",
+          "height": "600"
+        }
+      ]
+    }
+    ],
+  "css": {
+    "#viewport": {
+      "position": "relative;"
+    },
+    "#viewport canvas": {
+      "position": "absolute;"
+    },
+    "canvas": {
+      "background-color": "transparent;",
+      "border": "1px solid #000000;"
+    }
+  },
+  "scripts": {
+    "incoming-text": "display-text",
+    "incoming-image": "display-image",
+    "submit-message": "send-message",
+    "print-history": "plain-history",
+    "plain": [
+      "golmi-js/view/View",
+      "golmi-js/view/LayerView",
+      "golmi-js/view/LView",
+      "golmi-js/controller/LocalKeyController",
+      "golmi-js/PentoGenerator",
+      "golmi-js/pentoDemo"
+    ]
+  }
+}
