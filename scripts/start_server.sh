@@ -10,6 +10,8 @@ set -eu
 #   SLURK_DISABLE_ETAG: Disables the ETag for the rest API, defaults to `False`
 #   SLURK_DOCKER_TAG: Docker tag to be used, defaults to `latest`
 #   SLURK_ENV: Environment for flask, either `development` or `production`, defaults to `development`
+#   SLURK_GOLMI_URL:
+#   SLURK_GOLMI_PORT:
 
 export SLURK_SECRET_KEY=${SLURK_SECRET_KEY:-$RANDOM}
 export FLASK_ENV=${SLURK_ENV:-development}
@@ -37,5 +39,7 @@ else
         -e SLURK_SECRET_KEY=$SLURK_SECRET_KEY \
         -e SLURK_DISABLE_ETAG=${SLURK_DISABLE_ETAG:-False} \
         -e FLASK_ENV=$FLASK_ENV \
+	-e SLURK_GOLMI_URL=${SLURK_GOLMI_URL:-127.0.0.1} \
+	-e SLURK_GOLMI_PORT=${SLURK_GOLMI_PORT:-5000} \
         slurk/server:${SLURK_DOCKER_TAG:-latest}
 fi

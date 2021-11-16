@@ -55,3 +55,8 @@ if DEBUG:
             "api-key-value": "Bearer 00000000-0000-0000-0000-000000000000",
         }
     )
+
+
+GOLMI_URL = os.environ.get("SLURK_GOLMI_URL", "127.0.0.1")
+GOLMI_PORT = int(os.environ.get("SLURK_GOLMI_PORT", default="5000"))
+

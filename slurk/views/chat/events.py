@@ -6,6 +6,13 @@ from flask_login import login_required, current_user
 from slurk.extensions.events import socketio
 from slurk.models import User, Room, Log, Task
 
+@socketio.event
+def golmi_request_url():
+    url = current_app.config["GOLMI_URL"]
+    port = current_app.config["GOLMI_PORT"]
+    if port is not None:
+        url = f"{url}:{port}"
+    socketio.emit("golmi_send_url", {"url": url})
 
 @socketio.event
 def room_created(payload):
