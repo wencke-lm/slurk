@@ -39,8 +39,7 @@
 ``` 
 8. Create the golmi room:
 ```sh
-    $ GOLMI_ROOM_ID=$(scripts/create_room.sh $GOLMI_ROOM
-_LAYOUT_ID | jq .id)
+    $ GOLMI_ROOM_ID=$(scripts/create_room.sh $GOLMI_ROOM_LAYOUT_ID | jq .id)
     $ echo $GOLMI_ROOM_ID
     1
 ``` 
